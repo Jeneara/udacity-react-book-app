@@ -8,6 +8,7 @@ import React from "react";
 // State change on click? assign with book shelves
 
 const Book = (props) => {
+  const book = props;
   //const thumbnail
   //What to do if no image? ternary? - Will need to get no cover image.
   //Make sure all images same size?
@@ -44,7 +45,7 @@ const Book = (props) => {
           </div>
         </div>
         {/* Change to Title Prop */}
-        <div className="book-title">The Hobbit</div>
+        <div className="book-title">{book.title}</div>
         {/* Change to Author Prop */}
         <div className="book-authors">J.R.R. Tolkien</div>
       </div>
