@@ -7,6 +7,8 @@ import Shelves from "./components/Shelves";
 class BooksApp extends React.Component {
   state = {
     books: [],
+
+    // shelfs here?
   };
 
   //Fetch data
