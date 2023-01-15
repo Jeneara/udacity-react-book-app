@@ -1,39 +1,33 @@
 import React from "react";
 
-// Book details to pass in
-// Book Cover url
-// Book Title
-// Book Author
-
 // State change on click? assign with book shelves
 
 const Book = (props) => {
   const { book } = props;
+
   //Book Title
-  const title = book.title;
+  const bookTitle = book.title === undefined ? "Unknown Title" : book.title;
+
   //Cover Image
-  const cover = book.imageLinks.thumbnail;
-  //What to do if no image? ternary? - Will need to get no cover image.
+  const bookCover = book.imageLinks.thumbnail;
   //Set Cover Image Width and Height
   const coverWidth = 128;
   const coverHeight = 188;
 
-  //Authos
-  const authors = book.authors;
-  //What if no author?
-  //What if mutliple authors? can you use join here ? or concat?
+  //Authors
+  const bookAuthors =
+    book.authors === undefined ? "Unknown Authors" : book.authors.join(", ");
 
   return (
     <li>
       <div className="book">
         <div className="book-top">
-          {/* Change to thumbnail? */}
           <div
             className="book-cover"
             style={{
               width: coverWidth,
               height: coverHeight,
-              backgroundImage: `url(${cover})`,
+              backgroundImage: `url(${bookCover})`,
             }}
           ></div>
           {/* Book shelf changer move to seperate component?*/}
@@ -49,10 +43,8 @@ const Book = (props) => {
             </select>
           </div>
         </div>
-        {/* Change to Title Prop */}
-        <div className="book-title">{title}</div>
-        {/* Change to Author Prop */}
-        <div className="book-authors">{authors}</div>
+        <div className="book-title">{bookTitle}</div>
+        <div className="book-authors">{bookAuthors}</div>
       </div>
     </li>
   );
