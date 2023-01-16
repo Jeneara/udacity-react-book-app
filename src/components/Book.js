@@ -1,7 +1,5 @@
 import React from "react";
 
-// State change on click? assign with book shelves
-
 const Book = (props) => {
   const { book } = props;
 
@@ -9,7 +7,9 @@ const Book = (props) => {
   const bookTitle = book.title === undefined ? "Unknown Title" : book.title;
 
   //Cover Image
+  //TODO What if no cover? dummy cover
   const bookCover = book.imageLinks.thumbnail;
+
   //Set Cover Image Width and Height
   const coverWidth = 128;
   const coverHeight = 188;
@@ -30,7 +30,7 @@ const Book = (props) => {
               backgroundImage: `url(${bookCover})`,
             }}
           ></div>
-          {/* Book shelf changer move to seperate component?*/}
+          {/* TODO Book shelf changer move to seperate component? state change on click?*/}
           <div className="book-shelf-changer">
             <select>
               <option value="move" disabled>
