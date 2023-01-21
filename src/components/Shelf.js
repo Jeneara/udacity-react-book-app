@@ -8,18 +8,22 @@ const Shelf = (props) => {
     <div className="bookshelf">
       <h2 className="bookshelf-title">{currentShelf}</h2>
       <div className="bookshelf-books">
-        {/* TODO What does the shelf do if no books? */}
-        {/* Map through books */}
-        <ol className="books-grid">
-          {books.map((book) => (
-            <Book
-              key={book.id}
-              book={book}
-              changeShelf={props.changeShelf}
-              currentShelf={currentShelf}
-            />
-          ))}
-        </ol>
+        {/* If no books on shelf return message  */}
+        {books.length <= 0 ? (
+          <h2 className="bookself-empty">There are no books on this shelf.</h2>
+        ) : (
+          <ol className="books-grid">
+            {/* Map through books */}
+            {books.map((book) => (
+              <Book
+                key={book.id}
+                book={book}
+                changeShelf={props.changeShelf}
+                currentShelf={currentShelf}
+              />
+            ))}
+          </ol>
+        )}
       </div>
     </div>
   );

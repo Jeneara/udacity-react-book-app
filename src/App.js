@@ -35,8 +35,7 @@ class BooksApp extends React.Component {
 
   //TODO Fetch Search Data
   //TODO How are we going to filter through the shelves?
-  //TODO Update book State - Shelf change
-  //TODO Add Prop types
+  //TODO update Prop types
 
   // extra function add loading to pages {isloading ? ()}
 
