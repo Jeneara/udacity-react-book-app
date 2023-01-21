@@ -1,6 +1,6 @@
 import React from "react";
 import Shelf from "./Shelf";
-// import Book from "./Book";
+import PropTypes from "prop-types";
 
 const Shelves = (props) => {
   const { books, shelves } = props;
@@ -14,6 +14,12 @@ const Shelves = (props) => {
       </div>
     </div>
   );
+};
+
+Shelves.propTypes = {
+  books: PropTypes.array.isRequired,
+  shelves: PropTypes.array.isRequired,
+  //TODO Add shelf change proptype func.isRequried
 };
 
 export default Shelves;

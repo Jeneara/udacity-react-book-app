@@ -3,7 +3,8 @@ import * as BooksAPI from "./BooksAPI";
 import "./App.css";
 import Header from "./components/Header";
 import Shelves from "./components/Shelves";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
+import Search from "./components/Search";
 
 class BooksApp extends React.Component {
   state = {
@@ -19,7 +20,9 @@ class BooksApp extends React.Component {
   //TODO Fetch Search Data
   //TODO How are we going to filter through the shelves?
   //TODO Update book State - Shelf change
-  //TODO Set up react route routes / and /search
+  //TODO Add Prop types
+
+  // extra function add loading to pages {isloading ? ()}
 
   //Fetch data
   componentDidMount() {
@@ -39,21 +42,24 @@ class BooksApp extends React.Component {
         <Routes>
           {/* Homepage */}
           <Route
+            exact
             path="/"
-            element={<Shelves books={books} shelves={shelves} />}
-          />
-          {/* Search Page */}
-          <Route
-            path="/search"
             element={
-              <button
-                className={"open-search"}
-                onClick={() => this.setState({ showSearchPage: true })}
-              >
-                Add a book
-              </button>
+              <div className="main-page">
+                <div className="book-shelves">
+                  <Shelves books={books} shelves={shelves} />
+                </div>
+                {/* Add a book button */}
+                <div className="open-search">
+                  <Link to="/search">
+                    <button>Add a book</button>
+                  </Link>
+                </div>
+              </div>
             }
           />
+          {/* Search Page */}
+          <Route path="/search" element={<Search books={books} />} />
         </Routes>
       </div>
     );

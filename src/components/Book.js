@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Book = (props) => {
   const { book } = props;
@@ -48,6 +49,11 @@ const Book = (props) => {
       </div>
     </li>
   );
+};
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  //TODO Add shelf change proptype func.isRequried
 };
 
 export default Book;

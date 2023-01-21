@@ -1,14 +1,12 @@
 import React from "react";
 
-// * TODO: Instead of using this state variable to keep track of which page
-//      * we're on, use the URL in the browser's address bar. This will ensure that
-//      * users can use the browser's back and forward buttons to navigate between
-//      * pages, as well as provide a good URL they can bookmark and share.
-//      */
+// TODO Set up link to homepage
+// TODO set up search api
 
 const Search = (props) => (
   <div className="search-books">
     <div className="search-books-bar">
+      {/* set up <link /> back to homepage */}
       <button
         className="close-search"
         onClick={() => props.setState({ showSearchPage: false })}

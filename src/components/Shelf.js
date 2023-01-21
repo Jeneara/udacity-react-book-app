@@ -1,5 +1,6 @@
 import React from "react";
 import Book from "./Book";
+import PropTypes from "prop-types";
 
 const Shelf = (props) => {
   const { books } = props;
@@ -10,13 +11,20 @@ const Shelf = (props) => {
         {/* TODO What does the shelf do if no books? */}
         {/* Map through books */}
         <ol className="books-grid">
-          {books.map((book) => (
-            <Book key={book.id} book={book} />
-          ))}
+          {books
+            // .filter((book) => book.shelfName === props.shelfName)
+            .map((book) => (
+              <Book key={book.id} book={book} />
+            ))}
         </ol>
       </div>
     </div>
   );
+};
+
+Shelf.propTypes = {
+  books: PropTypes.array.isRequired,
+  //TODO Add shelf change proptype func.isRequried
 };
 
 export default Shelf;
