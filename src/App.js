@@ -17,19 +17,28 @@ class BooksApp extends React.Component {
     ],
   };
 
+  //Fetch data
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books: books });
+    });
+  }
+
+  //Change Shelves
+  changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then((books) => {
+      BooksAPI.getAll().then((books) => {
+        this.setState({ books: books });
+      });
+    });
+  };
+
   //TODO Fetch Search Data
   //TODO How are we going to filter through the shelves?
   //TODO Update book State - Shelf change
   //TODO Add Prop types
 
   // extra function add loading to pages {isloading ? ()}
-
-  //Fetch data
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({ books });
-    });
-  }
 
   render() {
     //Book Const
@@ -47,7 +56,11 @@ class BooksApp extends React.Component {
             element={
               <div className="main-page">
                 <div className="book-shelves">
-                  <Shelves books={books} shelves={shelves} />
+                  <Shelves
+                    books={books}
+                    shelves={shelves}
+                    changeShelf={this.changeShelf}
+                  />
                 </div>
                 {/* Add a book button */}
                 <div className="open-search">

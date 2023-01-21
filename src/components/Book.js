@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ShelfChanger from "./ShelfChanger";
 
 const Book = (props) => {
-  const { book } = props;
+  const { book, changeShelf, currentShelf } = props;
 
   //Book Title
   const bookTitle = book.title === undefined ? "Unknown Title" : book.title;
@@ -31,18 +32,11 @@ const Book = (props) => {
               backgroundImage: `url(${bookCover})`,
             }}
           ></div>
-          {/* TODO Book shelf changer move to seperate component? state change on click?*/}
-          <div className="book-shelf-changer">
-            <select>
-              <option value="move" disabled>
-                Move to...
-              </option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
+          <ShelfChanger
+            book={book}
+            changeShelf={changeShelf}
+            currentShelf={currentShelf}
+          />
         </div>
         <div className="book-title">{bookTitle}</div>
         <div className="book-authors">{bookAuthors}</div>
