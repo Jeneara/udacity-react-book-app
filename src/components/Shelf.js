@@ -6,7 +6,7 @@ const Shelf = (props) => {
   const { books, currentShelf } = props;
   return (
     <div className="bookshelf">
-      <h2 className="bookshelf-title">{currentShelf}</h2>
+      <h2 className="bookshelf-title">{currentShelf.name}</h2>
       <div className="bookshelf-books">
         {/* If no books on shelf return message  */}
         {books.length <= 0 ? (
@@ -14,14 +14,14 @@ const Shelf = (props) => {
         ) : (
           <ol className="books-grid">
             {/* Map through books */}
-            {books.map((book) => (
-              <Book
-                key={book.id}
-                book={book}
-                changeShelf={props.changeShelf}
-                currentShelf={currentShelf}
-              />
-            ))}
+            {books &&
+              books.map((book) => (
+                <Book
+                  key={book.id}
+                  book={book}
+                  updateShelf={props.updateShelf}
+                />
+              ))}
           </ol>
         )}
       </div>
@@ -30,10 +30,8 @@ const Shelf = (props) => {
 };
 
 Shelf.propTypes = {
-  books: PropTypes.array.isRequired,
-  currentShelf: PropTypes.string.isRequired,
-  changeShelf: PropTypes.func.isRequired,
-  //TODO Add shelf change proptype func.isRequried
+  book: PropTypes.object.isRequired,
+  updateShelf: PropTypes.func.isRequired,
 };
 
 export default Shelf;

@@ -3,14 +3,15 @@ import PropTypes from "prop-types";
 import ShelfChanger from "./ShelfChanger";
 
 const Book = (props) => {
-  const { book, changeShelf, currentShelf } = props;
+  const { book } = props;
 
   //Book Title
   const bookTitle = book.title === undefined ? "Unknown Title" : book.title;
 
   //Cover Image
   //TODO What if no cover? dummy cover
-  const bookCover = book.imageLinks.thumbnail;
+  const bookCover =
+    book.imageLinks === undefined ? "Unknown cover" : book.imageLinks.thumbnail;
 
   //Set Cover Image Width and Height
   const coverWidth = 128;
@@ -20,6 +21,8 @@ const Book = (props) => {
   const bookAuthors =
     book.authors === undefined ? "Unknown Authors" : book.authors.join(", ");
 
+  // console.log(book.shelf);
+  // console.log(currentShelf);
   return (
     <li>
       <div className="book">
@@ -32,11 +35,7 @@ const Book = (props) => {
               backgroundImage: `url(${bookCover})`,
             }}
           ></div>
-          <ShelfChanger
-            book={book}
-            changeShelf={changeShelf}
-            currentShelf={currentShelf}
-          />
+          <ShelfChanger book={book} updateShelf={props.updateShelf} />
         </div>
         <div className="book-title">{bookTitle}</div>
         <div className="book-authors">{bookAuthors}</div>
@@ -47,7 +46,7 @@ const Book = (props) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  //TODO Add shelf change proptype func.isRequried
+  updateShelf: PropTypes.func.isRequired,
 };
 
 export default Book;

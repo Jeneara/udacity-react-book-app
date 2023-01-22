@@ -3,23 +3,29 @@ import Shelf from "./Shelf";
 import PropTypes from "prop-types";
 
 const Shelves = (props) => {
-  const { books, shelves } = props;
-  let sortedBooks = [];
+  const { books } = props;
+  const shelves = [
+    { key: "currentlyReading", name: "Currently Reading" },
+    { key: "wantToRead", name: "Want to Read" },
+    { key: "read", name: "Read" },
+  ];
+
   return (
     <div className="list-books">
       <div className="list-books-content">
         {/* Map through shelves */}
-        {shelves.map((shelf) => {
-          sortedBooks = books.filter((book) => book.shelf === shelf.name);
-          return (
-            <Shelf
-              key={shelf.name}
-              currentShelf={shelf.name}
-              books={sortedBooks}
-              changeShelf={props.changeShelf}
-            />
-          );
-        })}
+        {shelves.map((shelf, index) => (
+          <Shelf
+            key={index}
+            currentShelf={shelf}
+            books={
+              // books
+              // sortedBooks
+              books && books.filter((book) => book.shelf === shelf.key)
+            }
+            updateShelf={props.updateShelf}
+          />
+        ))}
       </div>
     </div>
   );
@@ -27,9 +33,7 @@ const Shelves = (props) => {
 
 Shelves.propTypes = {
   books: PropTypes.array.isRequired,
-  shelves: PropTypes.array.isRequired,
-  changeShelf: PropTypes.func.isRequired,
-  //TODO Add shelf change proptype func.isRequried
+  updateShelf: PropTypes.func.isRequired,
 };
 
 export default Shelves;

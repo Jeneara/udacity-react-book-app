@@ -5,43 +5,44 @@ import Header from "./components/Header";
 import Shelves from "./components/Shelves";
 import { Route, Routes, Link } from "react-router-dom";
 import Search from "./components/Search";
+// import PropTypes from "prop-types";
 
 class BooksApp extends React.Component {
+  // static propTypes = {
+  //   book: PropTypes.object.isRequired,
+  // }
   state = {
     books: [],
-
-    shelves: [
-      { key: "currentlyReading", name: "Currently Reading" },
-      { key: "wantToRead", name: "Want to Read" },
-      { key: "read", name: "Read" },
-    ],
   };
 
-  //Fetch data
+  //Fetch data from API
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books: books });
+      this.setState(() => ({
+        books,
+      }));
     });
   }
 
-  //Change Shelves
-  changeShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then((books) => {
-      BooksAPI.getAll().then((books) => {
-        this.setState({ books: books });
-      });
+  //Update Shelves - Callback setState
+  //Code sourced from React Fundementals Section 9. Update state with setState
+  updateShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then((res) => {
+      this.setState((currentState) => ({
+        books: currentState.books
+          .filter((b) => b.id !== book.id)
+          .concat({ ...book, shelf }),
+      }));
     });
   };
 
-  //TODO Fetch Search Data
-  //TODO How are we going to filter through the shelves?
   //TODO update Prop types
 
   // extra function add loading to pages {isloading ? ()}
 
   render() {
     //Book Const
-    const { books, shelves } = this.state;
+    const { books } = this.state;
     return (
       <div className="app">
         {/* Show Header */}
@@ -55,11 +56,7 @@ class BooksApp extends React.Component {
             element={
               <div className="main-page">
                 <div className="book-shelves">
-                  <Shelves
-                    books={books}
-                    shelves={shelves}
-                    changeShelf={this.changeShelf}
-                  />
+                  <Shelves books={books} updateShelf={this.updateShelf} />
                 </div>
                 {/* Add a book button */}
                 <div className="open-search">
@@ -71,7 +68,10 @@ class BooksApp extends React.Component {
             }
           />
           {/* Search Page */}
-          <Route path="/search" element={<Search books={books} />} />
+          <Route
+            path="/search"
+            element={<Search books={books} updateShelf={this.updateShelf} />}
+          />
         </Routes>
       </div>
     );
