@@ -4,8 +4,6 @@ import * as BooksAPI from "../BooksAPI";
 import Book from "./Book";
 import PropTypes from "prop-types";
 
-// TODO set up search api that updates
-
 class Search extends React.Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
@@ -22,7 +20,9 @@ class Search extends React.Component {
     //Save the query
     this.setState(() => ({ searchQuery: searchQuery }));
 
-    if (searchQuery.length !== 0) {
+    if (searchQuery === "" || !searchQuery) {
+      this.setState({ searchResults: [], searchError: false });
+    } else {
       BooksAPI.search(searchQuery).then((searchResults) => {
         //If error return SearchError = True
         if (searchResults.error) {
@@ -32,9 +32,6 @@ class Search extends React.Component {
           this.setState({ searchResults: searchResults, searchError: false });
         }
       });
-    } else {
-      //Set as default state
-      this.setState({ searchResults: [], searchError: false });
     }
   };
 
@@ -52,7 +49,6 @@ class Search extends React.Component {
 
           {/* Search Input */}
           <div className="search-books-input-wrapper">
-            {/* {JSON.stringify(this.state)} */}
             <input
               type="text"
               placeholder="Search by title or author"
@@ -86,7 +82,6 @@ class Search extends React.Component {
           </ol>
           {/* If searchError = true return error message */}
           {searchError === true && (
-            //TODO Add some styling
             <h3 className="search-books-results-heading">
               Hmm looks like no books where found. Please try another search
               query.

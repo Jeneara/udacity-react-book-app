@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ShelfChanger from "./ShelfChanger";
+import noCoverFoundThumbail from "../images/noCoverFoundThumbnail.png";
 
 const Book = (props) => {
   const { book } = props;
@@ -9,9 +10,10 @@ const Book = (props) => {
   const bookTitle = book.title === undefined ? "Unknown Title" : book.title;
 
   //Cover Image
-  //TODO What if no cover? dummy cover
   const bookCover =
-    book.imageLinks === undefined ? "Unknown cover" : book.imageLinks.thumbnail;
+    book.imageLinks === undefined
+      ? noCoverFoundThumbail
+      : book.imageLinks.thumbnail;
 
   //Set Cover Image Width and Height
   const coverWidth = 128;
@@ -44,6 +46,7 @@ const Book = (props) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
+  updateShelf: PropTypes.func.isRequired,
 };
 
 export default Book;

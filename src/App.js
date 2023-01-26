@@ -5,12 +5,8 @@ import Header from "./components/Header";
 import Shelves from "./components/Shelves";
 import { Route, Routes, Link } from "react-router-dom";
 import Search from "./components/Search";
-// import PropTypes from "prop-types";
 
 class BooksApp extends React.Component {
-  // static propTypes = {
-  //   book: PropTypes.object.isRequired,
-  // }
   state = {
     books: [],
   };
@@ -38,10 +34,6 @@ class BooksApp extends React.Component {
       });
     });
   };
-
-  //TODO update Prop types
-
-  // extra function add loading to pages {isloading ? ()}
 
   render() {
     //Book Const

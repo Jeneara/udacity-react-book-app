@@ -10,7 +10,9 @@ const Shelf = (props) => {
       <div className="bookshelf-books">
         {/* If no books on shelf return message  */}
         {books.length <= 0 ? (
-          <h2 className="bookself-empty">There are no books on this shelf.</h2>
+          <h2 className="bookself-empty">
+            There are no books on this shelf at the moment.
+          </h2>
         ) : (
           <ol className="books-grid">
             {/* Map through books */}
