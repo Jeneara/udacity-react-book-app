@@ -21,8 +21,6 @@ const Book = (props) => {
   const bookAuthors =
     book.authors === undefined ? "Unknown Authors" : book.authors.join(", ");
 
-  // console.log(book.shelf);
-  // console.log(currentShelf);
   return (
     <li>
       <div className="book">
@@ -46,7 +44,6 @@ const Book = (props) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  updateShelf: PropTypes.func.isRequired,
 };
 
 export default Book;

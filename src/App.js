@@ -19,7 +19,7 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState(() => ({
-        books,
+        books: books,
       }));
     });
   }
@@ -27,12 +27,15 @@ class BooksApp extends React.Component {
   //Update Shelves - Callback setState
   //Code sourced from React Fundementals Section 9. Update state with setState
   updateShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then((res) => {
+    BooksAPI.update(book, shelf).then(() => {
       this.setState((currentState) => ({
         books: currentState.books
           .filter((b) => b.id !== book.id)
-          .concat({ ...book, shelf }),
+          .concat({ book }),
       }));
+      BooksAPI.getAll().then((books) => {
+        this.setState({ books: books });
+      });
     });
   };
 

@@ -18,11 +18,7 @@ const Shelves = (props) => {
           <Shelf
             key={index}
             currentShelf={shelf}
-            books={
-              // books
-              // sortedBooks
-              books && books.filter((book) => book.shelf === shelf.key)
-            }
+            books={books && books.filter((book) => book.shelf === shelf.key)}
             updateShelf={props.updateShelf}
           />
         ))}

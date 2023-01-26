@@ -30,7 +30,7 @@ const Shelf = (props) => {
 };
 
 Shelf.propTypes = {
-  book: PropTypes.object.isRequired,
+  books: PropTypes.array.isRequired,
   updateShelf: PropTypes.func.isRequired,
 };
 
