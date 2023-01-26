@@ -29,15 +29,15 @@ then
     ```
 
 Third party librarys
- - ['React Router'](https://reactrouter.com/en/main)
- - ['Prop Types'](https://www.npmjs.com/package/prop-types)
+ - [React Router](https://reactrouter.com/en/main)
+ - [Prop Types](https://www.npmjs.com/package/prop-types)
 
 ## Backend Server
 
 To simplify the development process, udacity provided a backend server for development. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods I will used to perform necessary operations on the backend:
 
 - [`getAll`](https://github.com/udacity/reactnd-project-myreads-starter#getall)
-- [`update`]https://github.com/udacity/reactnd-project-myreads-starter#update)
+- [`update`](https://github.com/udacity/reactnd-project-myreads-starter#update)
 - [`search`](https://github.com/udacity/reactnd-project-myreads-starter#search)
 
 
